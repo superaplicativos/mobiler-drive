@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial da Plataforma Mobiler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#058BAD;
+      --secondary:#DE7A19;
+      --bg:#0C1F2A;
+      --card:#112837;
+      --text:#F4F7FA;
+      --muted:#C5D3DB;
+      --accent:#32D4F5;
+      --success:#19C37D;
+      --danger:#FF5D5D;
+    }
+    @page { size: A4; margin: 18mm; }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto;
+      color:var(--text);
+      background:#0b1720;
+    }
+    .hero{
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(5,139,173,.25), transparent),
+                  radial-gradient(1200px 600px at 90% 10%, rgba(222,122,25,.15), transparent),
+                  linear-gradient(180deg, #0C1F2A 0%, #08131A 100%);
+      padding:48px 36px 28px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .brand{
+      display:flex;align-items:center;gap:16px;margin-bottom:18px;
+    }
+    .brand img{height:42px;width:auto;border-radius:6px}
+    .title{font-size:28px; font-weight:700; letter-spacing:.3px}
+    .subtitle{font-size:14px;color:var(--muted)}
+    .badge{
+      display:inline-block;padding:6px 10px;border-radius:999px;
+      background:rgba(50,212,245,.12);color:#9EE3F4;font-size:12px;margin-top:8px
+    }
+    .container{padding:32px 36px}
+    .toc{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:8px 0 28px
+    }
+    .toc a{
+      text-decoration:none;color:var(--text);
+      background:var(--card); border:1px solid rgba(255,255,255,.08);
+      padding:12px 14px;border-radius:12px; font-size:13px;
+    }
+    h2{
+      font-size:20px;margin:28px 0 12px; font-weight:700;
+      color:#EAF2F6;border-left:4px solid var(--primary);padding-left:10px;
+    }
+    .section{
+      background:linear-gradient(180deg, rgba(17,40,55,.8), rgba(17,40,55,.6));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;padding:20px;margin:18px 0; page-break-inside:avoid;
+    }
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .card{
+      background:rgba(12,28,38,.85); border:1px solid rgba(255,255,255,.06);
+      border-radius:14px;padding:14px; min-height:110px;
+    }
+    .card h3{font-size:14px;margin:0 0 6px;color:#EAF2F6}
+    .card p{font-size:12px;color:var(--muted);margin:0}
+    .label{font-size:11px;color:#9EE3F4;margin-bottom:8px}
+    .list{margin:0;padding-left:16px}
+    .list li{margin:6px 0;color:var(--muted);font-size:12px}
+    .callout{
+      border-left:4px solid var(--secondary);
+      background:rgba(222,122,25,.08); color:#FFD7B0;
+      padding:12px;border-radius:8px;margin:10px 0;font-size:12px
+    }
+    .pill{
+      display:inline-block;padding:6px 10px;margin:6px 8px 6px 0;
+      border-radius:999px;border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);font-size:12px;color:#DDE7ED
+    }
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .stat{
+      background:linear-gradient(180deg, rgba(5,139,173,.16), rgba(5,139,173,.06));
+      border:1px solid rgba(5,139,173,.3);border-radius:12px;padding:12px
+    }
+    .stat .big{font-size:20px;font-weight:700}
+    .footer{padding:10px 36px 24px;color:#7F97A3;font-size:12px}
+    .img-inline{height:20px;vertical-align:middle;margin-right:6px}
+    .hero-visual{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:8px
+    }
+    .hero-visual img{height:38px;opacity:.85}
+    .separator{height:1px;background:rgba(255,255,255,.08);margin:14px 0}
+    a{color:#9EE3F4}
+    .brandline{display:flex;align-items:center;gap:10px}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="brandline">
+      <div class="brand">
+        <img src="BackEnd/public/images/logo.png" alt="Mobiler Logo">
+        <div>
+          <div class="title">Tutorial da Plataforma Mobiler</div>
+          <div class="subtitle">Guia visual para configurar e operar Painel + Apps</div>
+          <div class="badge">Serviços: Táxi • Entrega • Aluguel • Intermunicipal • Leilão</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="BackEnd/public/images/taxi-app.png" alt="App de Táxi">
+        <img src="BackEnd/public/images/quick.png" alt="Rápido">
+        <img src="BackEnd/public/images/wallets.png" alt="Carteiras">
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="toc">
+      <a href="#checklist">Configuração Inicial</a>
+      <a href="#operacao">Operação no Painel</a>
+      <a href="#gestao">Gestão de Pessoas e Frota</a>
+      <a href="#marketing">Marketing e Comunicação</a>
+      <a href="#suporte">Suporte e Qualidade</a>
+      <a href="#financeiro">Financeiro e Pagamentos</a>
+      <a href="#seguranca">Segurança e Conformidade</a>
+      <a href="#apps-user">App Passageiro</a>
+      <a href="#apps-driver">App Motorista</a>
+      <a href="#fluxos">Fluxos Comuns</a>
+      <a href="#praticas">Boas Práticas</a>
+      <a href="#faq">Perguntas Frequentes</a>
+    </div>
+
+    <section id="checklist" class="section">
+      <h2>Configuração Inicial (Checklist)</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div class="label">Idiomas e Países</div>
+          <h3>Países / Idiomas</h3>
+          <p>Ative países de operação e idiomas exibidos para usuários e motoristas.</p>
+        </div>
+        <div class="card">
+          <div class="label">Zonas e Mapas</div>
+          <h3>Configurações de Mapa / Zona de Pico</h3>
+          <p>Defina cidade(s), áreas de pico (tarifa dinâmica) e preferências do mapa.</p>
+        </div>
+        <div class="card">
+          <div class="label">Tipos e Pacotes</div>
+          <h3>Tipos / Pacotes de Aluguel</h3>
+          <p>Categorias de serviço (Mini, SUV, Luxury) e pacotes de tempo/distância.</p>
+        </div>
+        <div class="card">
+          <div class="label">Documentos</div>
+          <h3>Documentos Necessários</h3>
+          <p>Defina exigências para Driver, Fleet e Owner (validade e número).</p>
+        </div>
+        <div class="card">
+          <div class="label">Onboarding</div>
+          <h3>Tela de Boas-Vindas</h3>
+          <p>Personalize telas de boas-vindas (User, Driver, Owner) com imagem e texto.</p>
+        </div>
+        <div class="card">
+          <div class="label">Pagamentos</div>
+          <h3>Pagamento / Fatura</h3>
+          <p>Selecione gateways (Stripe/PayPal) e ajuste impostos e comissões.</p>
+        </div>
+        <div class="card">
+          <div class="label">Push</div>
+          <h3>Canal de Notificação</h3>
+          <p>Crie templates e campanhas de push para usuários e motoristas.</p>
+        </div>
+        <div class="card">
+          <div class="label">E-mail e Segurança</div>
+          <h3>E-mail / ReCaptcha</h3>
+          <p>Configure servidor de e-mail e proteção anti-bot quando necessário.</p>
+        </div>
+        <div class="card">
+          <div class="label">Site / Landing</div>
+          <h3>Site / Páginas</h3>
+          <p>Atualize Home, Driver, Contact, Terms, Privacy com textos e imagens.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="operacao" class="section">
+      <h2>Operação Diária no Painel</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Despacho e Monitoramento</h3>
+          <ul class="list">
+            <li>Despacho (Novo), Visão Global e Mapa de Calor para visão em tempo real.</li>
+            <li>Acompanhe solicitações, aceite/atribua corridas, filtre por tipo.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Solicitações e Corridas</h3>
+          <ul class="list">
+            <li>Solicitações, Em Andamento, Agendadas e Entregas com detalhes completos.</li>
+            <li>Intervenha: reatribuir, cancelar, contatar.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Cancelamentos e SOS</h3>
+          <ul class="list">
+            <li>Consulta de motivos padronizados para análise.</li>
+            <li>Monitoramento de SOS e ações imediatas.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Drivers Online/Offline</h3>
+          <ul class="list">
+            <li>Disponibilidade, performance e histórico.</li>
+            <li>Aprovação de documentos pendentes.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">Dica: utilize filtros e a visão de mapa para reduzir tempo de resposta em horários de pico.</div>
+    </section>
+
+    <section id="gestao" class="section">
+      <h2>Gestão de Pessoas e Frota</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Drivers</h3>
+          <p>Cadastrar → Documentos → Aprovar → Operar online → Corridas → Ganhos.</p>
+        </div>
+        <div class="card">
+          <h3>Owners / Fleet</h3>
+          <p>Vincular veículos, associar motoristas e acompanhar dashboards.</p>
+        </div>
+        <div class="card">
+          <h3>Documentos e Banco</h3>
+          <p>Exigências por perfil e dados bancários para repasses.</p>
+        </div>
+        <div class="card">
+          <h3>Incentivos</h3>
+          <p>Metas e recompensas para aumentar desempenho.</p>
+        </div>
+        <div class="card">
+          <h3>Assinaturas</h3>
+          <p>Pacotes e gestão de cobranças (quando aplicável).</p>
+        </div>
+        <div class="card">
+          <h3>Níveis e Recompensas</h3>
+          <p>Gamificação: pontos, ranking e transparência.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="marketing" class="section">
+      <h2>Marketing e Comunicação</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Promoções e Indicações</h3>
+          <span class="pill">Código Promocional</span>
+          <span class="pill">Programa de Indicação</span>
+          <p>Crie cupons e incentive indicações para crescer sua base.</p>
+        </div>
+        <div class="card">
+          <h3>Notificações Push</h3>
+          <p>Campanhas segmentadas por perfil e área de demanda.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="suporte" class="section">
+      <h2>Suporte e Qualidade</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Tickets de Suporte</h3>
+          <p>Acompanhe solicitações, responda e anexe orientações.</p>
+        </div>
+        <div class="card">
+          <h3>Reclamações</h3>
+          <p>Títulos padronizados e resolução por caso.</p>
+        </div>
+      </div>
+      <div class="callout">Padronize respostas e mantenha SLAs claros para agilidade.</div>
+    </section>
+
+    <section id="financeiro" class="section">
+      <h2>Financeiro e Pagamentos</h2>
+      <div class="grid-3">
+        <div class="stat">
+          <div class="big">Faturas</div>
+          <div>Impostos, taxas e comissões personalizáveis.</div>
+        </div>
+        <div class="stat">
+          <div class="big">Carteira</div>
+          <div>Recargas, transferências e histórico transparente.</div>
+        </div>
+        <div class="stat">
+          <div class="big">Relatórios</div>
+          <div>Finance • Fleet • Owner por período e serviço.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguranca" class="section">
+      <h2>Segurança e Conformidade</h2>
+      <ul class="list">
+        <li>Documentos válidos e aprovados antes de operar.</li>
+        <li>SOS disponível e acionável com protocolo.</li>
+        <li>Cancelamentos com motivos padronizados.</li>
+        <li>Trilhas de push/chat/tickets mantidas para auditoria.</li>
+      </ul>
+    </section>
+
+    <section id="apps-user" class="section">
+      <h2>Guia do App Passageiro</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Acesso e Perfil</h3>
+          <p>Cadastro com verificação; dados pessoais e cartões salvos.</p>
+        </div>
+        <div class="card">
+          <h3>Solicitar Corrida</h3>
+          <p>Origem/destino, tempo estimado e preço; escolha categoria e pagamento; agende.</p>
+        </div>
+        <div class="card">
+          <h3>Durante a Corrida</h3>
+          <p>Posição do motorista, chat e SOS se necessário.</p>
+        </div>
+        <div class="card">
+          <h3>Após a Corrida</h3>
+          <p>Avaliação, gorjeta, fatura e histórico; suporte/tickets.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="apps-driver" class="section">
+      <h2>Guia do App Motorista</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Documentos e Aprovação</h3>
+          <p>Envio pelo app e operação somente após aprovação.</p>
+        </div>
+        <div class="card">
+          <h3>Operação da Corrida</h3>
+          <p>Receber/aceitar; Cheguei; iniciar com código de verificação (OTP) do passageiro.</p>
+        </div>
+        <div class="card">
+          <h3>Navegação e Provas</h3>
+          <p>Waze/Google Maps; em Entrega, prova com foto e paradas.</p>
+        </div>
+        <div class="card">
+          <h3>Encerramento e Ganhos</h3>
+          <p>Finalizar, ver fatura, acompanhar ganhos diários/semanais.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="fluxos" class="section">
+      <h2>Fluxos Comuns</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Lançar Operação</h3>
+          <p>Países → Mapa → Zona de Pico → Tipos → Documentos → Boas‑vindas → Pagamento/Fatura → Site.</p>
+        </div>
+        <div class="card">
+          <h3>Aprovar Motorista</h3>
+          <p>Pending Drivers → revisar docs → Approved Drivers → orientação.</p>
+        </div>
+        <div class="card">
+          <h3>Criar Promoção</h3>
+          <p>Código Promocional → vigência/público → Notificações Push → divulgação.</p>
+        </div>
+        <div class="card">
+          <h3>Acompanhar Corridas</h3>
+          <p>Despacho / Visão Global → filtrar por tipo/status → intervir.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="praticas" class="section">
+      <h2>Boas Práticas</h2>
+      <ul class="list">
+        <li>Documentos e dados atualizados (drivers/owners).</li>
+        <li>Promoções e push em horários de pico para balancear demanda.</li>
+        <li>Análise de cancelamentos para ajustes de regra e capacitação.</li>
+        <li>Respostas padronizadas em suporte e títulos de reclamação claros.</li>
+        <li>Revisão semanal de relatórios de finanças e performance.</li>
+      </ul>
+    </section>
+
+    <section id="faq" class="section">
+      <h2>Perguntas Frequentes</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Mudar pagamento da corrida?</h3>
+          <p>Pelo app (durante/ao fim) ou painel (quando habilitado).</p>
+        </div>
+        <div class="card">
+          <h3>Sem documentos válidos?</h3>
+          <p>Operação bloqueada até aprovação pelo painel.</p>
+        </div>
+        <div class="card">
+          <h3>Habilitar Aluguel/Entrega?</h3>
+          <p>Ative categorias e pacotes em Tipos e Pacotes de Aluguel.</p>
+        </div>
+        <div class="card">
+          <h3>Push segmentado por área?</h3>
+          <p>Sim, por perfil/zona/tipo de serviço quando disponível.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © Mobiler — Guia de uso e configuração do Painel e Apps
+  </footer>
+</body>
+</html>
